@@ -1,0 +1,650 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101827">
+    <meta name="description" content="OrçaFácil — crie orçamentos profissionais de construção, elétrica, pintura, climatização e manutenção.">
+
+    <title>OrçaFácil | LagaresDev</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- BARRA SUPERIOR -->
+    <header class="barra-superior">
+        <div class="container barra-superior-conteudo">
+            <a href="#inicio" id="link-inicio" class="marca">
+                <span class="marca-icone">OF</span>
+                <span class="marca-texto">
+                    <strong>OrçaFácil</strong>
+                    <small>por LagaresDev</small>
+                </span>
+            </a>
+
+            <nav class="navegacao-principal" aria-label="Navegação principal">
+                <button type="button" id="btn-inicio" class="botao-navegacao ativo">
+                    Início
+                </button>
+                <button type="button" id="btn-historico" class="botao-navegacao">
+                    Meus orçamentos
+                </button>
+                <button type="button" id="btn-backup" class="botao-navegacao">
+                    Cópia de segurança
+                </button>
+            </nav>
+
+            <button type="button" id="btn-novo-orcamento" class="botao botao-destaque botao-topo">
+                + Novo orçamento
+            </button>
+        </div>
+    </header>
+
+    <main class="container conteudo-principal">
+        <!-- INÍCIO -->
+        <section id="secao-inicio" class="secao">
+            <div class="painel-boas-vindas">
+                <div class="boas-vindas-texto">
+                    <span class="etiqueta-superior">
+                        <span class="indicador-online"></span>
+                        SEU TRABALHO, MAIS ORGANIZADO
+                    </span>
+
+                    <h1>Seu próximo orçamento começa <span>aqui.</span></h1>
+
+                    <p>
+                        Organize seus serviços, calcule os custos e apresente
+                        orçamentos profissionais aos seus clientes sem complicação.
+                    </p>
+
+                    <button type="button" id="btn-comecar-orcamento" class="botao botao-destaque">
+                        Criar meu orçamento <span aria-hidden="true">→</span>
+                    </button>
+
+                    <div class="beneficios-resumo">
+                        <span>✓ Cálculos automáticos</span>
+                        <span>✓ Histórico organizado</span>
+                        <span>✓ PDF para o cliente</span>
+                    </div>
+                </div>
+
+                <div class="ilustracao-painel" aria-hidden="true">
+                    <div class="ilustracao-fundo"></div>
+
+                    <div class="ilustracao-cartao">
+                        <div class="ilustracao-cartao-topo">
+                            <span class="ilustracao-ponto"></span>
+                            <span>RESUMO DO ORÇAMENTO</span>
+                        </div>
+
+                        <div class="ilustracao-linha larga"></div>
+                        <div class="ilustracao-linha media"></div>
+                        <div class="ilustracao-divisor"></div>
+
+                        <div class="ilustracao-valor">
+                            <span>Seu trabalho valorizado</span>
+                            <strong>Do serviço ao orçamento</strong>
+                        </div>
+
+                        <div class="ilustracao-progresso"><span></span></div>
+                    </div>
+
+                    <div class="ilustracao-selo">
+                        <span>✓</span>
+                        <div>
+                            <strong>Mais praticidade</strong>
+                            <small>Menos contas manuais</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INDICADORES -->
+            <div class="resumo-dashboard">
+                <article class="cartao-indicador">
+                    <div class="indicador-icone icone-azul">▤</div>
+                    <div>
+                        <span>Orçamentos criados</span>
+                        <strong id="total-orcamentos">0</strong>
+                        <small>Todos os registros</small>
+                    </div>
+                </article>
+
+                <article class="cartao-indicador">
+                    <div class="indicador-icone icone-amarelo">◷</div>
+                    <div>
+                        <span>Aguardando resposta</span>
+                        <strong id="orcamentos-pendentes">0</strong>
+                        <small>Precisam de retorno</small>
+                    </div>
+                </article>
+
+                <article class="cartao-indicador">
+                    <div class="indicador-icone icone-verde">✓</div>
+                    <div>
+                        <span>Aprovados</span>
+                        <strong id="orcamentos-aprovados">0</strong>
+                        <small>Serviços aceitos</small>
+                    </div>
+                </article>
+
+                <article class="cartao-indicador">
+                    <div class="indicador-icone icone-vermelho">×</div>
+                    <div>
+                        <span>Recusados</span>
+                        <strong id="orcamentos-rejeitados">0</strong>
+                        <small>Não aprovados</small>
+                    </div>
+                </article>
+            </div>
+
+            <!-- ESCOLHA DA PROFISSÃO -->
+            <div class="secao-cabecalho">
+                <div>
+                    <span class="etiqueta-superior">COMECE POR AQUI</span>
+                    <h2>Qual serviço você realiza?</h2>
+                    <p>
+                        Escolha sua área para montar um orçamento com serviços
+                        adequados ao seu trabalho.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grade-profissoes">
+                <button type="button" class="cartao-profissao profissao-construcao" data-area="construcao">
+                    <span class="profissao-icone" aria-hidden="true">⌂</span>
+                    <span class="profissao-titulo">Construção e reforma</span>
+                    <span class="profissao-descricao">Alvenaria, assentamento de pisos, reboco e reformas.</span>
+                    <span class="profissao-link">Criar orçamento <span>→</span></span>
+                </button>
+
+                <button type="button" class="cartao-profissao profissao-pintura" data-area="pintura">
+                    <span class="profissao-icone" aria-hidden="true">◩</span>
+                    <span class="profissao-titulo">Pintura</span>
+                    <span class="profissao-descricao">Paredes, tetos, fachadas, preparação e acabamento.</span>
+                    <span class="profissao-link">Criar orçamento <span>→</span></span>
+                </button>
+
+                <button type="button" class="cartao-profissao profissao-eletrica" data-area="eletrica">
+                    <span class="profissao-icone" aria-hidden="true">ϟ</span>
+                    <span class="profissao-titulo">Elétrica</span>
+                    <span class="profissao-descricao">Tomadas, iluminação, circuitos, quadros e instalações.</span>
+                    <span class="profissao-link">Criar orçamento <span>→</span></span>
+                </button>
+
+                <button type="button" class="cartao-profissao profissao-climatizacao" data-area="ar-condicionado">
+                    <span class="profissao-icone" aria-hidden="true">❄</span>
+                    <span class="profissao-titulo">Ar-condicionado</span>
+                    <span class="profissao-descricao">Instalação, limpeza, manutenção e diagnóstico.</span>
+                    <span class="profissao-link">Criar orçamento <span>→</span></span>
+                </button>
+
+                <button type="button" class="cartao-profissao profissao-hidraulica" data-area="hidraulica">
+                    <span class="profissao-icone" aria-hidden="true">≋</span>
+                    <span class="profissao-titulo">Hidráulica</span>
+                    <span class="profissao-descricao">Torneiras, tubulações, vazamentos e instalações.</span>
+                    <span class="profissao-link">Criar orçamento <span>→</span></span>
+                </button>
+
+                <button type="button" class="cartao-profissao profissao-manutencao" data-area="manutencao">
+                    <span class="profissao-icone" aria-hidden="true">⚙</span>
+                    <span class="profissao-titulo">Manutenção geral</span>
+                    <span class="profissao-descricao">Reparos, ajustes, montagem e pequenos consertos.</span>
+                    <span class="profissao-link">Criar orçamento <span>→</span></span>
+                </button>
+
+                <button type="button" class="cartao-profissao profissao-outros" data-area="outros">
+                    <span class="profissao-icone" aria-hidden="true">＋</span>
+                    <span class="profissao-titulo">Outro serviço</span>
+                    <span class="profissao-descricao">Personalize o orçamento para sua atividade.</span>
+                    <span class="profissao-link">Criar orçamento <span>→</span></span>
+                </button>
+            </div>
+
+            <section class="painel-atalho">
+                <div class="atalho-icone" aria-hidden="true">▤</div>
+                <div class="atalho-texto">
+                    <h3>Já fez algum orçamento?</h3>
+                    <p>
+                        Encontre seus orçamentos anteriores, atualize valores
+                        ou acompanhe as respostas dos clientes.
+                    </p>
+                </div>
+                <button type="button" id="btn-ver-historico" class="botao botao-secundario">
+                    Ver meus orçamentos <span aria-hidden="true">→</span>
+                </button>
+            </section>
+        </section>
+
+        <!-- FORMULÁRIO -->
+        <section id="secao-formulario" class="secao" hidden>
+            <div class="cabecalho-pagina">
+                <button type="button" id="btn-voltar-formulario" class="botao-voltar">
+                    <span aria-hidden="true">←</span> Voltar
+                </button>
+
+                <span class="etiqueta-superior">NOVO ORÇAMENTO</span>
+                <h1 id="titulo-formulario">Monte seu orçamento</h1>
+                <p>
+                    Preencha os dados do serviço. Os valores serão calculados
+                    automaticamente.
+                </p>
+            </div>
+
+            <form id="formulario-container">
+                <input type="hidden" id="orcamento-id">
+                <input type="hidden" id="area-servico" value="outros">
+
+                <!-- PROFISSÃO E SERVIÇO -->
+                <section class="bloco-formulario bloco-profissao">
+                    <div class="bloco-cabecalho">
+                        <span class="numero-etapa">01</span>
+                        <div>
+                            <h2 id="titulo-area-profissional">Área do serviço</h2>
+                            <p id="descricao-area-profissional">
+                                A categoria escolhida define os serviços sugeridos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="painel-servicos-profissionais">
+                        <p class="texto-ajuda">
+                            Selecione uma profissão na página inicial para ver
+                            as opções específicas dessa atividade.
+                        </p>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="titulo-servico">Nome deste orçamento</label>
+                        <input type="text" id="titulo-servico" name="titulo-servico"
+                            placeholder="Ex.: Instalação de ar-condicionado na sala" required>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="descricao-servico">Detalhes do serviço</label>
+                        <textarea id="descricao-servico" name="descricao-servico" rows="3"
+                            placeholder="Informe o que será feito, o local e outros detalhes importantes."></textarea>
+                    </div>
+                </section>
+
+                <!-- DADOS DO CLIENTE -->
+                <section class="bloco-formulario">
+                    <div class="bloco-cabecalho">
+                        <span class="numero-etapa">02</span>
+                        <div>
+                            <h2>Dados do cliente</h2>
+                            <p>Para quem você vai apresentar o orçamento?</p>
+                        </div>
+                    </div>
+
+                    <div class="grade-campos">
+                        <div class="grupo-campo">
+                            <label for="nome-cliente">Nome do cliente *</label>
+                            <input type="text" id="nome-cliente" name="nome-cliente"
+                                placeholder="Nome completo ou empresa" autocomplete="name" required>
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="telefone-cliente">WhatsApp / telefone</label>
+                            <input type="tel" id="telefone-cliente" name="telefone-cliente"
+                                placeholder="(11) 99999-9999" autocomplete="tel">
+                        </div>
+
+                        <div class="grupo-campo campo-largo">
+                            <label for="endereco-servico">Endereço do serviço</label>
+                            <input type="text" id="endereco-servico" name="endereco-servico"
+                                placeholder="Rua, número, bairro e cidade" autocomplete="street-address">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SERVIÇOS E MÃO DE OBRA -->
+                <section class="bloco-formulario">
+                    <div class="bloco-cabecalho">
+                        <span class="numero-etapa">03</span>
+                        <div>
+                            <h2>Serviços e mão de obra</h2>
+                            <p>
+                                Adicione cada serviço e informe o preço que
+                                você cobra pela unidade escolhida.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="lista-servicos" class="lista-servicos"></div>
+
+                    <button type="button" id="btn-adicionar-servico" class="botao-adicionar-servico">
+                        + Adicionar outro serviço
+                    </button>
+                </section>
+
+                <!-- MATERIAIS -->
+                <section class="bloco-formulario">
+                    <div class="bloco-cabecalho">
+                        <span class="numero-etapa">04</span>
+                        <div>
+                            <h2>Materiais</h2>
+                            <p>
+                                Informe os materiais necessários e quanto
+                                custam. Você pode adicionar vários itens.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="lista-materiais" class="lista-materiais"></div>
+
+                    <button type="button" id="btn-adicionar-material" class="botao-adicionar-servico">
+                        + Adicionar material
+                    </button>
+
+                    <div class="painel-responsabilidade">
+                        <h3>Quem vai comprar os materiais?</h3>
+                        <p>
+                            Essa escolha determina se o custo dos materiais
+                            entra no valor cobrado pelo profissional.
+                        </p>
+
+                        <label class="opcao-responsabilidade">
+                            <input type="radio" name="responsavel-materiais" value="profissional" checked>
+                            <span>
+                                <strong>Eu compro os materiais</strong>
+                                <small>Os materiais entram no valor final cobrado.</small>
+                            </span>
+                        </label>
+
+                        <label class="opcao-responsabilidade">
+                            <input type="radio" name="responsavel-materiais" value="cliente">
+                            <span>
+                                <strong>O cliente compra os materiais</strong>
+                                <small>O cliente paga os materiais separadamente.</small>
+                            </span>
+                        </label>
+
+                        <p id="aviso-responsabilidade-materiais" class="aviso-responsabilidade">
+                            Os materiais serão incluídos no valor cobrado do cliente.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- PRAZO E DESPESAS -->
+                <section class="bloco-formulario">
+                    <div class="bloco-cabecalho">
+                        <span class="numero-etapa">05</span>
+                        <div>
+                            <h2>Prazo e despesas</h2>
+                            <p>
+                                Informe os dias previstos, ajudantes e despesas
+                                adicionais, quando houver.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grade-campos">
+                        <div class="grupo-campo">
+                            <label for="dias-servico">Prazo estimado (dias)</label>
+                            <input type="number" id="dias-servico" name="dias-servico"
+                                min="1" step="1" value="1" required>
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="quantidade-ajudantes">Quantidade de ajudantes</label>
+                            <input type="number" id="quantidade-ajudantes" name="quantidade-ajudantes"
+                                min="0" step="1" value="0">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="valor-diaria-ajudante">Diária de cada ajudante (R$)</label>
+                            <input type="number" id="valor-diaria-ajudante" name="valor-diaria-ajudante"
+                                min="0" step="0.01" value="0">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="custo-transporte">Transporte por dia (R$)</label>
+                            <input type="number" id="custo-transporte" name="custo-transporte"
+                                min="0" step="0.01" value="0">
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="despesas-extras">Outras despesas (R$)</label>
+                            <input type="number" id="despesas-extras" name="despesas-extras"
+                                min="0" step="0.01" value="0">
+                            <small>Ex.: aluguel de equipamento ou descarte de entulho.</small>
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="validade-orcamento">Validade do orçamento (dias)</label>
+                            <input type="number" id="validade-orcamento" name="validade-orcamento"
+                                min="1" step="1" value="15">
+                        </div>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="observacoes-orcamento">Observações para o cliente</label>
+                        <textarea id="observacoes-orcamento" name="observacoes-orcamento" rows="3"
+                            placeholder="Condições de pagamento, materiais não incluídos, detalhes do serviço..."></textarea>
+                    </div>
+                </section>
+
+                <!-- RESUMO FINANCEIRO -->
+                <section class="bloco-formulario bloco-resumo">
+                    <div class="bloco-cabecalho">
+                        <span class="numero-etapa">06</span>
+                        <div>
+                            <h2>Resumo do orçamento</h2>
+                            <p>Confira os valores antes de salvar e enviar ao cliente.</p>
+                        </div>
+                    </div>
+
+                    <div class="resumo-financeiro">
+                        <div class="linha-resumo">
+                            <span>Mão de obra</span>
+                            <strong id="total-mao-obra">R$ 0,00</strong>
+                        </div>
+
+                        <div class="linha-resumo">
+                            <span>Materiais necessários</span>
+                            <strong id="total-materiais">R$ 0,00</strong>
+                        </div>
+
+                        <div class="linha-resumo">
+                            <span>Materiais incluídos no orçamento</span>
+                            <strong id="total-materiais-resumo">R$ 0,00</strong>
+                        </div>
+
+                        <div class="linha-resumo">
+                            <span>Ajudantes</span>
+                            <strong id="total-ajudantes">R$ 0,00</strong>
+                        </div>
+
+                        <div class="linha-resumo">
+                            <span>Transporte</span>
+                            <strong id="total-transporte">R$ 0,00</strong>
+                        </div>
+
+                        <div class="linha-resumo">
+                            <span>Outras despesas</span>
+                            <strong id="total-despesas-extras">R$ 0,00</strong>
+                        </div>
+
+                        <div class="linha-total">
+                            <div>
+                                <span>Valor total a cobrar</span>
+                                <small id="explicacao-total">
+                                    Confira quem será responsável pelos materiais.
+                                </small>
+                            </div>
+                            <strong id="valor-total-orcamento">R$ 0,00</strong>
+                        </div>
+                    </div>
+
+                    <p class="nota-resumo">
+                        Os valores dependem das quantidades e dos preços informados.
+                        Confira se todos os custos do serviço foram considerados
+                        antes de apresentar o orçamento.
+                    </p>
+                </section>
+
+                <!-- AÇÕES -->
+                <div class="acoes-formulario">
+                    <p id="mensagem-formulario" class="mensagem-formulario"
+                        role="status" aria-live="polite"></p>
+
+                    <button type="button" id="btn-cancelar-orcamento"
+                        class="botao botao-secundario">
+                        Cancelar
+                    </button>
+
+                    <button type="button" id="btn-imprimir-orcamento"
+                        class="botao botao-secundario">
+                        Imprimir / Salvar PDF
+                    </button>
+
+                    <button type="button" id="btn-compartilhar-whatsapp"
+                        class="botao botao-secundario">
+                        Compartilhar pelo WhatsApp
+                    </button>
+
+                    <button type="submit" id="btn-salvar-orcamento"
+                        class="botao botao-destaque">
+                        Salvar orçamento detalhado
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- HISTÓRICO -->
+        <section id="secao-historico" class="secao" hidden>
+            <div class="cabecalho-pagina">
+                <button type="button" id="btn-voltar-historico" class="botao-voltar">
+                    <span aria-hidden="true">←</span> Início
+                </button>
+
+                <span class="etiqueta-superior">ORGANIZAÇÃO</span>
+                <h1>Meus orçamentos</h1>
+                <p>
+                    Consulte os valores, edite informações e acompanhe
+                    a resposta de cada cliente.
+                </p>
+            </div>
+
+            <div class="painel-filtros">
+                <div class="grupo-campo">
+                    <label for="buscar-orcamento">Buscar orçamento</label>
+                    <input type="search" id="buscar-orcamento"
+                        placeholder="Nome do cliente ou serviço...">
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="filtro-status">Situação</label>
+                    <select id="filtro-status">
+                        <option value="todos">Todas as situações</option>
+                        <option value="pendente">Aguardando resposta</option>
+                        <option value="aprovado">Aprovados</option>
+                        <option value="rejeitado">Recusados</option>
+                    </select>
+                </div>
+
+                <button type="button" id="btn-novo-historico" class="botao botao-destaque">
+                    + Novo orçamento
+                </button>
+            </div>
+
+            <div id="lista-orcamentos" class="lista-orcamentos"></div>
+
+            <div id="estado-vazio" class="estado-vazio" hidden>
+                <div class="estado-vazio-icone" aria-hidden="true">▤</div>
+                <h2>Nenhum orçamento encontrado</h2>
+                <p>
+                    Crie seu primeiro orçamento ou altere os filtros
+                    para consultar outros registros.
+                </p>
+                <button type="button" id="btn-criar-primeiro-orcamento"
+                    class="botao botao-destaque">
+                    Criar orçamento
+                </button>
+            </div>
+        </section>
+
+        <!-- BACKUP -->
+        <section id="secao-backup" class="secao" hidden>
+            <div class="cabecalho-pagina">
+                <button type="button" id="btn-voltar-backup" class="botao-voltar">
+                    <span aria-hidden="true">←</span> Início
+                </button>
+
+                <span class="etiqueta-superior">SEGURANÇA DOS DADOS</span>
+                <h1>Cópia de segurança</h1>
+                <p>
+                    Guarde seus orçamentos para poder recuperá-los
+                    se trocar de navegador ou dispositivo.
+                </p>
+            </div>
+
+            <div class="grade-backup">
+                <article class="cartao-backup">
+                    <div class="backup-icone">↓</div>
+                    <h2>Salvar uma cópia</h2>
+                    <p>
+                        Exporte seus orçamentos para um arquivo que você
+                        poderá guardar no computador ou em outro local seguro.
+                    </p>
+                    <button type="button" id="btn-exportar-backup"
+                        class="botao botao-destaque">
+                        Exportar meus dados
+                    </button>
+                </article>
+
+                <article class="cartao-backup">
+                    <div class="backup-icone">↑</div>
+                    <h2>Restaurar uma cópia</h2>
+                    <p>
+                        Importe um arquivo de backup criado anteriormente
+                        pelo OrçaFácil.
+                    </p>
+
+                    <div class="grupo-campo">
+                        <label for="arquivo-backup">Escolher arquivo de backup</label>
+                        <input type="file" id="arquivo-backup" accept=".json,application/json">
+                    </div>
+
+                    <button type="button" id="btn-importar-backup"
+                        class="botao botao-secundario">
+                        Importar dados
+                    </button>
+                </article>
+            </div>
+
+            <p id="mensagem-backup" class="mensagem-formulario"
+                role="status" aria-live="polite"></p>
+
+            <div class="aviso-seguranca">
+                <strong>Importante</strong>
+                <p>
+                    Os orçamentos ficam salvos no armazenamento local do navegador.
+                    Limpar os dados do navegador ou usar outro dispositivo pode
+                    fazer com que eles não apareçam. Faça cópias de segurança regularmente.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="rodape">
+        <div class="container rodape-conteudo">
+            <a href="#inicio" id="btn-rodape-inicio" class="marca marca-rodape">
+                <span class="marca-icone">OF</span>
+                <span class="marca-texto">
+                    <strong>OrçaFácil</strong>
+                    <small>por LagaresDev</small>
+                </span>
+            </a>
+
+            <p>Mais organização para quem faz acontecer.</p>
+            <span class="rodape-direitos">© 2026 LagaresDev</span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+
+# Arquivos do Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Configurações locais
+.env
+.env.*
+!.env.example
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Configurações pessoais do VS Code
+.vscode/
